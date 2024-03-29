@@ -18,10 +18,11 @@ export async function getApplicationByName(
       queryAttribute: 'name',
       queryValue: encodeURIComponent(appname),
     };
-
+    core.info(`appname: ${appname}`);
+    core.info(`getApplicationByNameResource: ${JSON.stringify(getApplicationByNameResource)}`)
     const applicationResponse: VeracodeApplication.ResultsData =
       await http.getResourceByAttribute<VeracodeApplication.ResultsData>(vid, vkey, getApplicationByNameResource);
-    core.info(`applicationResponse : ${applicationResponse}`)
+    core.info(`applicationResponse : ${JSON.stringify(applicationResponse)}`)
     const applications = applicationResponse._embedded?.applications || [];
     if (applications.length === 0) {
       throw new Error(`No application found with name ${appname}`);
