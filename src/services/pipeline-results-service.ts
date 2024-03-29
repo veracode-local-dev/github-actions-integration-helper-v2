@@ -78,6 +78,7 @@ export async function preparePipelineResults(inputs: Inputs): Promise<void> {
   try {
     const application = await getApplicationByName(inputs.appname, inputs.vid, inputs.vkey);
     const applicationGuid = application.guid;
+    core.info(`No issue in the getApplicationByName function applicationGuid ${applicationGuid}`);
     policyFindings = await getApplicationFindings(applicationGuid, inputs.vid, inputs.vkey);
   } catch (error) {
     core.info(`error1:  ${error}`);
